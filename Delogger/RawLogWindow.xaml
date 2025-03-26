@@ -1,0 +1,25 @@
+﻿<Window x:Class="Delogger.RawLogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+        Title="Raw Log Entry" Height="600" Width="900" WindowStartupLocation="CenterOwner">
+    <DockPanel>
+        <!-- Top Menu -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem x:Name="FormatJsonMenuItem" Header="Format JSON" Click="FormatJsonMenuItem_Click"/>
+        </Menu>
+        <!-- Main Content Area -->
+        <Grid>
+            <avalonEdit:TextEditor x:Name="JsonEditor"
+                                   IsReadOnly="True"
+                                   FontFamily="Consolas"
+                                   ShowLineNumbers="True"
+                                   WordWrap="True"
+                                   HorizontalScrollBarVisibility="Auto"
+                                   VerticalScrollBarVisibility="Auto"
+                                   Background="Transparent"
+                                   BorderThickness="0"
+                                   Margin="10"/>
+        </Grid>
+    </DockPanel>
+</Window>
