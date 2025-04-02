@@ -18,12 +18,22 @@ internal class DataService : IDataService
 
             while ((line = reader.ReadLine()) != null)
             {
-                var logEntry = JsonConvert.DeserializeObject<LogEntry>(line);
-                if (logEntry != null)
+                try
                 {
-                    logEntry.EntryId = entryId++;
-                    logEntry.RawLogEntry = line; // Store the raw log entry for later use
-                    logEntries.Add(logEntry);
+                    var logEntry = JsonConvert.DeserializeObject<LogEntry>(line);
+                    if (logEntry != null)
+                    {
+                        logEntry.EntryId = entryId++;
+                        logEntry.RawLogEntry = line; // Store the raw log entry for later use
+                        logEntries.Add(logEntry);
+                    }
+                }
+                catch (Exception)
+                {
+                    // Handle the case where a line could not be deserialized into a LogEntry.
+                    // This could be due to malformed JSON. You can log this or skip the entry.
+                    // For now, we will just ignore it and continue reading the next line.
+                    // Optionally, you could log this to a separate error log for review.
                 }
             }
         }
